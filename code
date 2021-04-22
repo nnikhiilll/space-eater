@@ -1,0 +1,98 @@
+import turtle
+import random
+
+square=turtle.Turtle()
+
+screen=turtle.Screen()
+screen.bgcolor("black")
+
+g=[]
+
+square.speed(0)
+square.penup()
+square.goto(-200,200)
+square.pendown()
+square.color("red")
+for i in range(4):
+  square.forward(400)
+  square.right(90)
+
+for i in range(10):
+  z=turtle.Turtle()
+  z.speed(0)
+  z.penup()
+  z.shape("circle")
+  z.color("red")
+  x=random.randint(-200,200)
+  y=random.randint(-200,200)
+  z.goto(x,y)
+  z.right(random.randint(-360,360))
+  g.append(z)
+  
+def Collision(x):
+  if x.xcor()<-200 or x.xcor()>200:
+    x.right(180)
+  elif x.ycor()<-200 or x.ycor()>200:
+    x.right(90)
+    
+q=turtle.Turtle()
+q.shape("turtle")
+q.color("blue")
+
+q.speed(0)
+def TurtleRight():
+  q.right(10)
+  
+def TurtleLeft():
+  q.left(10)
+  
+screen.onkey(TurtleRight,"Right")
+screen.onkey(TurtleLeft,"Left")
+screen.listen()
+
+
+s=0
+score=turtle.Turtle()
+score.penup()
+score.goto(-200,210)
+score.pendown()
+score.color("white")
+score.write("Score:"+str(s))
+while True:
+  for i in g:
+    q.penup()
+    q.forward(5)
+    i.forward(1)
+    Collision(i)
+    Collision(q)
+    if abs(q.xcor()-i.xcor())<20 and abs(q.ycor()-i.ycor())<20:
+      i.penup()
+      i.goto(5000,5000)
+      s=s+1
+      score.clear()
+      score.write("Score:"+str(s))
+  if s==10:
+    break
+      
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+  
